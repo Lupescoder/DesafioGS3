@@ -13,13 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::create('profiles', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->unsignedBigInteger('profile_id');
+            $table->foreign('profile_id')->references('id')->on('profiles');
+            $table->boolean('is_admin')->default(0)->unsigned();
             $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -31,6 +39,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('profiles');
         Schema::dropIfExists('users');
     }
 };
