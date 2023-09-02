@@ -37,17 +37,21 @@ class StoreUpdateUserRequest extends FormRequest
             'password' => [
                 'required',
                 'max:100'
+            ],
+            'profile_id' => [
+                'required',
+                'max:1'
             ]
         ];
 
         if($this->method() == 'PUT'){
             $rules['email'] = [
-                'required',
+                'nullable',
                 'email',
                 'max:255',
                 "unique:users,email, {$this->id},id"
             ];
-            
+
             $rules['password'] = [
                 'nullable',
                 'max:100'
