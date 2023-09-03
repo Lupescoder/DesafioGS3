@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Usuario</ion-title>
+    <ion-button slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Usuario</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-input label="Nome" [(ngModel)]="usuarioData.name" type="text" name="name" placeholder="Nome do Usuário"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Email" [(ngModel)]="usuarioData.email" type="email" name="email" placeholder="email@domain.com"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Senha" [(ngModel)]="usuarioData.password" type="password" name="password" value=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select [(ngModel)]="usuarioData.profile_id" label="Floating label" label-placement="floating">
+          <ion-select-option *ngFor="let perfil of perfis" [value]="perfil.id">{{perfil.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-button size="full" color="tertiary" (click)="salvarUsuario()" shape="round">Salvar</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as $ from 'jquery';
+import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -9,32 +10,34 @@ import * as $ from 'jquery';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private router: Router) { }
+  loginData = {
+    email: '',
+    password: '',
+  };
+
+  constructor(private router: Router, private http: HttpClient, private storage: Storage ) {  this.storage.create();  }
 
   ngOnInit() {
-  }
-  login(){
-    var email = $('#userEmail').val();
-    var password = $('#userPassword').val();
-    var dados = {'email':email,'password':password};
-    $.ajax({
-      type: "POST",
-      data: dados,
-      url: "http://127.0.0.1:8000/users/login",
-      cache: true,
-      success: function (data) {
-        console.log(data)
-        this.router.navigate(['home'])
-      },
-      error: function (data){
-        console.log(data)
-      },
-      async: true
-    });
 
   }
-  registerPage(){
-    this.router.navigate(['register'])
+  login(){
+    // this.router.navigate(['home'])
+
+    this.http.post('http://127.0.0.1:8000/users/login', this.loginData).subscribe(
+      (response: any) => {
+        const token = response.token;
+        this.storage.set('profile_id', response.user.profile_id);
+        this.storage.set('is_admin', response.user.is_admin);
+        this.storage.set('usuario_id', response.user.id);
+        this.storage.set('token', token).then(() => {
+          this.router.navigate(['home']);
+        });
+      },
+      (error) => {
+        console.error('Erro de autenticação:', error);
+      }
+    );
+
   }
 
 }

@@ -28,7 +28,15 @@ class UserController extends Controller
         if(!$token = auth()->attempt(['email' => $request->email, 'password' => $request->password])){
             abort(401, 'Unauthorized');
         }
-        return response()->json(['token'=>$token], 200);
+
+        $user = Auth::user();
+        $userDataPermissions = [
+            'is_admin' => $user->is_admin,
+            'profile_id' => $user->profile_id,
+            'id' => $user->id
+        ];
+
+        return response()->json(['token'=>$token,'user'=>$userDataPermissions,], 200);
     }
 
 
@@ -59,7 +67,8 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $data = $request->validated();
-        if(!$request->password){
+
+        if($request->password){
             $data['password'] = bcrypt($request->password);
         }
         $user->update($data);
