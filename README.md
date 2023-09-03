@@ -15,18 +15,30 @@
 
 3. Rode o seguinte comando para instalar as dependências do Composer: composer install
 
-4. Verifique o arquivo `.env` para garantir que as configurações do seu banco de dados estejam corretas.
+4. Renomeie o arquivo `.env.example` para `.env`
 
-5. Execute as migrações do banco de dados com o seguinte comando: php artisan migrate
+5.  Verifique o arquivo `.env` para garantir que as configurações do seu banco de dados estejam corretas.
+
+- **DB_CONNECTION**: mysql
+- **DB_HOST**: 127.0.0.1
+- **DB_PORT**: 3306
+- **DB_DATABASE**: desafio
+- **DB_USERNAME**: root
+- **DB_PASSWORD**: (deixe em branco ou insira sua senha)
+
+6.  Execute o comando para gerar a key JWT : php artisan jwt:secret
 
 
-6. Em seguida, execute o comando para popular o banco de dados com dados iniciais: php artisan db:seed --class=ProfileSeeder
+7. Execute as migrações do banco de dados com o seguinte comando: php artisan migrate
 
 
-7. Execute também o seguinte comando para adicionar usuários de exemplo: php artisan db:seed --class=UserSeeder
+8. Em seguida, execute o comando para popular o banco de dados com dados iniciais: php artisan db:seed --class=ProfileSeeder
 
 
-8. Inicie o servidor backend com o seguinte comando: php artisan serve
+9. Execute também o seguinte comando para adicionar usuários de exemplo: php artisan db:seed --class=UserSeeder
+
+
+10. Inicie o servidor backend com o seguinte comando: php artisan serve
 
 Agora, o backend está rodando na sua máquina.
 
@@ -36,6 +48,7 @@ Agora, o backend está rodando na sua máquina.
 ### Pré-requisitos
 
 - Certifique-se de que você tenha o Node.js instalado na sua máquina.
+- Certifique-se de ter o ionic instalado : npm i -g @ionic/cli 
 
 ### Passos
 
