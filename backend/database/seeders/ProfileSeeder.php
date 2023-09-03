@@ -17,7 +17,15 @@ class ProfileSeeder extends Seeder
     {
 
         DB::table('profiles')->insert([
-            'name' => 'Perfil Teste',
+            'id' => 1,
+            'name' => 'Administrador',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('profiles')->insert([
+            'id' => 2,
+            'name' => 'Usuario Comum',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

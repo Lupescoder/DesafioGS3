@@ -40,6 +40,10 @@ class StoreUpdateUserRequest extends FormRequest
             ],
             'profile_id' => [
                 'required',
+                'max:100'
+            ],
+            'is_admin' => [
+                'nullable',
                 'max:1'
             ]
         ];
