@@ -26,7 +26,7 @@
       <ion-item>
         <ion-input label="Senha" [(ngModel)]="usuarioData.password" type="password" name="password" value=""></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item *ngIf="is_admin">
         <ion-select [(ngModel)]="usuarioData.profile_id" label="Perfil" label-placement="floating">
           <ion-select-option *ngFor="let perfil of perfis" [value]="perfil.id">{{perfil.name}}</ion-select-option>
         </ion-select>
