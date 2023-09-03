@@ -60,6 +60,7 @@ Agora, o backend está rodando na sua máquina.
 
 
 Agora, o frontend está rodando na sua máquina e você pode acessar a aplicação em um navegador da web
+<br>
 Para fazer o Login use o Usuário Administrador => email: admin@gmail.com e senha: 123
 
 
